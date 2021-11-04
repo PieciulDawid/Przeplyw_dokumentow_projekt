@@ -27,6 +27,6 @@ public class TestController extends Controller{
 		
 		View MainMenu = new MainMenuView(/* ewentualne argumenty konstruktora*/);
 		UIManager.popWindow();
-		UIManager.addWindow(MainMenu);
+		UIManager.addWindow(MainMenu); // widok zawsze powinien być tworzony przez popowaniem poprzedniego
 	}
 }
