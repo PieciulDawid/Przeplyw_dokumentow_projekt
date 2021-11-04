@@ -26,12 +26,16 @@ public class UIManager {
 		((AsynchronousTextGUIThread)Gui.getGUIThread()).start();
 	}
 	
-	public static synchronized void addWindow(Window window) {
-		instance.Gui.addWindow(window);
+	public static void addWindow(Window window) {
+		synchronized(UIManager.class) {
+			instance.Gui.addWindow(window);
+		}
 	}
 	
-	public static synchronized void popWindow() {
-		instance.Gui.getActiveWindow().close();
+	public static void popWindow() {
+		synchronized(UIManager.class) {
+			instance.Gui.getActiveWindow().close();
+		}
 	}
 	
 }
