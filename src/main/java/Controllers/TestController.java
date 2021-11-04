@@ -13,7 +13,10 @@ public class TestController extends Controller{
 	}
 	public void Login(String login, String password) {
 		// weryfikacja, czyli logowanie
-		if(!Objects.equals(login, "admin") && !Objects.equals(password, "admin")) {
+		if(!Objects.equals(login, "admin") || !Objects.equals(password, "admin")) {
+			View LoginView = new TestView();
+			UIManager.popWindow();
+			UIManager.addWindow(LoginView);
 			return;
 		}
 		

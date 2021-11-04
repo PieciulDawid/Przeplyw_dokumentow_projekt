@@ -27,7 +27,7 @@ public class TestView extends View{
 		
 		panel.addComponent(new Button("Submit", () -> {
 			// TODO walidacja
-			System.out.println(login.getText() + password.getText());
+			
 			ControllerCont.TestController.Login(login.getText(), password.getText());
 		}));
 		
