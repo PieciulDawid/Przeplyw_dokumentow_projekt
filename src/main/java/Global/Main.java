@@ -1,3 +1,6 @@
+package Global;
+
+import Views.TestView;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
@@ -15,7 +18,7 @@ public class Main {
         screen.startScreen();*/
 
         // Create panel to hold components
-        Panel panel = new Panel();
+        /*Panel panel = new Panel();
         panel.setLayoutManager(new GridLayout(2));
 
         panel.addComponent(new Label("Forename"));
@@ -31,7 +34,7 @@ public class Main {
         BasicWindow window = new BasicWindow();
 
         window.setHints(Arrays.asList(Window.Hint.CENTERED));
-        window.setComponent(panel);
+        window.setComponent(panel);*/
 
         // Create gui and start gui
         /*MultiWindowTextGUI gui = new MultiWindowTextGUI(new SeparateTextGUIThread.Factory(),
@@ -54,10 +57,11 @@ public class Main {
         System.out.println((gui.getGUIThread().getThread().getId()));
         System.out.println(Thread.currentThread().getId());*/
 
-        UIManager.setup();
-        UIManager.addWindow(window);
-    
-        panel.addComponent(new Button("Submit", new Runnable() {
+        UIManager.setup();/*
+        UIManager.addWindow(window);*/
+        ControllerCont.TestController.Show();
+        
+        /*panel.addComponent(new Button("Submit", new Runnable() {
             @Override
             public void run() {
                 Window wind = new BasicWindow();
@@ -65,6 +69,6 @@ public class Main {
                 wind.setFixedSize(new TerminalSize(10,10));
                 UIManager.addWindow(wind);
             }
-        }));
+        }));*/
     }
 }
