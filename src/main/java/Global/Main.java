@@ -57,18 +57,8 @@ public class Main {
         System.out.println((gui.getGUIThread().getThread().getId()));
         System.out.println(Thread.currentThread().getId());*/
 
-        UIManager.setup();/*
-        UIManager.addWindow(window);*/
-        ControllerCont.TestController.Show();
         
-        /*panel.addComponent(new Button("Submit", new Runnable() {
-            @Override
-            public void run() {
-                Window wind = new BasicWindow();
-                System.out.println(Thread.currentThread().getId());
-                wind.setFixedSize(new TerminalSize(10,10));
-                UIManager.addWindow(wind);
-            }
-        }));*/
+        UIManager.setup(); // Setup UIManagera
+        ControllerCont.TestController.Show(); // Wyświetlenie pierwszego widoku
     }
 }
