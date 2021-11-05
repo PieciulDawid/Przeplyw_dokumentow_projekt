@@ -5,5 +5,6 @@ import Global.UIManager;
 public class Controller {
     public void GoBack(){
         UIManager.popWindow();
-        UIManager.showTop();}
+        UIManager.showTop();
+    }
 }
