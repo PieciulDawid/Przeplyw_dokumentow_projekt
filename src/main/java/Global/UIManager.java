@@ -39,5 +39,17 @@ public class UIManager {
 			instance.Gui.getActiveWindow().close();
 		}
 	}
+
+	public static void hideTop() {
+		synchronized(UIManager.class) {
+			instance.Gui.getActiveWindow().setVisible(false);
+		}
+	}
+
+	public static void showTop() {
+		synchronized(UIManager.class) {
+			instance.Gui.getActiveWindow().setVisible(true);
+		}
+	}
 	
 }

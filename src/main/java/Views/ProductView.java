@@ -32,7 +32,7 @@ public class ProductView extends View{
 
         panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
         panel.addComponent(new Button("Cofnij",()->{
-            ((ProductController)Controller).GoBack();
+            Controller.GoBack();
         }));
         panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
