@@ -12,6 +12,6 @@ public class Main {
     public  static void main(String[] args) throws IOException {
         
         UIManager.setup(); // Setup UIManagera
-        ControllerCont.TestController.Show(); // Wyświetlenie pierwszego widoku
+        UIManager.addWindow(new TestView()); // Wyświetlenie pierwszego widoku
     }
 }

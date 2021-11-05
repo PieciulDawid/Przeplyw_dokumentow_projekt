@@ -1,6 +1,6 @@
 package Views;
 
-import Global.ControllerCont;
+import Controllers.TestController;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
@@ -28,7 +28,7 @@ public class TestView extends View{
 		panel.addComponent(new Button("Submit", () -> {
 			// TODO walidacja
 			
-			ControllerCont.TestController.Login(login.getText(), password.getText());
+			((TestController)Controller).Login(login.getText(), password.getText());
 		}));
 		
 		setHints(Arrays.asList(Window.Hint.CENTERED));

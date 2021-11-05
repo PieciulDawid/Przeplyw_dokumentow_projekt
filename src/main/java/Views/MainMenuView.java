@@ -1,12 +1,13 @@
 package Views;
 
-import Global.ControllerCont;
+import Controllers.*;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
 import java.util.Arrays;
 
-public class MainMenuView extends View{
+public class MainMenuView extends View {
+	
 	public MainMenuView() {
 		super();
 		Panel panel = new Panel();
@@ -18,7 +19,7 @@ public class MainMenuView extends View{
 		
 		
 		panel.addComponent(new Button("Wyloguj", () ->{
-			ControllerCont.MainMenuController.Logout();
+			((MainMenuController)Controller).Logout();
 		}));
 		
 		
