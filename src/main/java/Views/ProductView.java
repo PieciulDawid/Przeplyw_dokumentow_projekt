@@ -15,7 +15,10 @@ public class ProductView extends View{
         panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
         panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 
-        panel.addComponent(new Button("Dodaj"));
+        panel.addComponent(new Button("Dodaj",()->{
+            ((ProductController)Controller).AddProduct();
+
+        }).setPreferredSize(new TerminalSize(7,1)));
         panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
         panel.addComponent(new Button("Wyświetl"));
@@ -24,7 +27,7 @@ public class ProductView extends View{
         panel.addComponent(new Button("Modyfikuj"));
         panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
-        panel.addComponent(new Button("Usuń "));
+        panel.addComponent(new Button("Usuń").setPreferredSize(new TerminalSize(6,1)));
         panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
         panel.addComponent(new Button("Dodaj wiele"));

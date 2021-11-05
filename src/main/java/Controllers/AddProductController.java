@@ -1,4 +1,4 @@
 package Controllers;
 
-public class AddProductController extends Controller {
+public class AddProductController extends Controller{
 }
