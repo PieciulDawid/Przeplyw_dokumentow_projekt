@@ -10,5 +10,12 @@ public class MainMenuController extends Controller{
 		UIManager.popWindow();
 		UIManager.addWindow(TestView);
 	}
+
+	public void ToProduct(){
+		View ProductView = new ProductView(/* ewentualne argumenty konstruktora*/);
+
+		UIManager.popWindow();
+		UIManager.addWindow(ProductView);
+	}
 	
 }

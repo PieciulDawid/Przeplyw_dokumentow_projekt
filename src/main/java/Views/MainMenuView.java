@@ -12,12 +12,29 @@ public class MainMenuView extends View {
 		super();
 		Panel panel = new Panel();
 		panel.setLayoutManager(new GridLayout(2));
-		
-		
-		panel.addComponent(new Label("Zalogowano!"));
+		panel.addComponent(new Label("Zalogowano : "));
+		panel.addComponent(new Label("lukasz"));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
+
+		panel.addComponent(new Button("Produkty", ()->{
+			((MainMenuController)Controller).ToProduct();
+		}));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+
+		panel.addComponent(new Button("Klienci"));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+
+		panel.addComponent(new Button("Pracownicy"));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+
+		panel.addComponent(new Button("Zamowienia"));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+
+		panel.addComponent(new EmptySpace(new TerminalSize(0,2)));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,2)));
+
 		panel.addComponent(new EmptySpace(new TerminalSize(0,0))); // Empty space underneath labels
-		
-		
 		panel.addComponent(new Button("Wyloguj", () ->{
 			((MainMenuController)Controller).Logout();
 		}));
