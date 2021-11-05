@@ -1,6 +1,6 @@
 package Views;
 
-import Controllers.*;
+import Controllers.MainMenuController;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
@@ -17,7 +17,7 @@ public class MainMenuView extends View {
 		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 
-		panel.addComponent(new Button("Produkty", ()->{
+		/*panel.addComponent(new Button("Produkty", ()->{
 			((MainMenuController)Controller).ToProduct();
 		}));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
@@ -31,8 +31,20 @@ public class MainMenuView extends View {
 		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
 		panel.addComponent(new Button("Zamowienia"));
-		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));*/
 
+		panel.addComponent(new ActionListBox()
+				.addItem("Produkty", ()->{
+					((MainMenuController)Controller).ToProduct();
+				})
+				.addItem("Kilenci", () -> {return;})
+				.addItem("Pracownicy", ()->{
+					((MainMenuController)Controller).ToEmployee();
+				})
+				.addItem("Zamowienia", () -> {return;})
+		);
+		
+		
 		panel.addComponent(new EmptySpace(new TerminalSize(0,2)));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,2)));
 
