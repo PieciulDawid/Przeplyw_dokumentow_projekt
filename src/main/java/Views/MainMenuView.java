@@ -25,7 +25,9 @@ public class MainMenuView extends View {
 		panel.addComponent(new Button("Klienci"));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
-		panel.addComponent(new Button("Pracownicy"));
+		panel.addComponent(new Button("Pracownicy", ()->{
+			((MainMenuController)Controller).ToEmployee();
+		}));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
 		panel.addComponent(new Button("Zamowienia"));

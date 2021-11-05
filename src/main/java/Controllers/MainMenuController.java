@@ -16,5 +16,11 @@ public class MainMenuController extends Controller{
 		UIManager.hideTop();
 		UIManager.addWindow(ProductView);
 	}
+
+	public void ToEmployee(){
+		View EmployeeView = new EmployeeView(/* ewentualne argumenty konstruktora*/);
+		UIManager.hideTop();
+		UIManager.addWindow(EmployeeView);
+	}
 	
 }
