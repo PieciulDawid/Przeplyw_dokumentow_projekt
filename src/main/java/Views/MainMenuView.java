@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class MainMenuView extends View {
 	
 	public MainMenuView() {
-		super();
+		super("Menu");
 		Panel panel = new Panel();
 		panel.setLayoutManager(new GridLayout(2));
 		panel.addComponent(new Label("Zalogowano : "));

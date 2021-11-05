@@ -8,6 +8,31 @@ import java.lang.reflect.InvocationTargetException;
 public class View extends BasicWindow {
 	protected Controller Controller;
 	
+	public View(String a) {
+		super(a);
+		String className = this.getClass().getSimpleName();
+		try {
+			Controller = (Controllers.Controller) Class.
+					forName("Controllers." + className.substring(0,className.length()-4) + "Controller").
+					getDeclaredConstructor().
+					newInstance();
+		}
+		catch(InstantiationException e) {
+			e.printStackTrace();
+		}
+		catch(IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		catch(InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		catch(NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	public View() {
 		super();
 		String className = this.getClass().getSimpleName();
