@@ -29,11 +29,11 @@ public class DBActivities {
 		try {
 			Stream<String[]> users = new CSVReader(new FileReader("users.csv")).readAll().stream();
 			String[] userRaw = (String[])users.filter((String[] attr)->attr[3] == login && attr[4] == password).toArray()[0];
-			user = new EmployeeModel(/*Integer.parseInt(userRaw[0]),
+			user = new EmployeeModel(Integer.parseInt(userRaw[0]),
 					userRaw[1],
 					userRaw[2],
 					userRaw[3],
-					userRaw[4]*/);
+					userRaw[4]);
 		}
 		catch(IOException | CsvException e) {
 			e.printStackTrace();

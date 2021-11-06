@@ -6,8 +6,8 @@ public class EmployeeModel {
     private String Surname;
     private String Login;
     private String Password;
-
-   public void EmployeeModel(int id, String name, String Surname, String Login, String Password){
+    
+    public EmployeeModel(int id, String name, String Surname, String Login, String Password){
 
     }
 
