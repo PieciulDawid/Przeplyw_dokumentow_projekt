@@ -8,8 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 public class View extends BasicWindow {
 	protected Controller Controller;
 	
-	public View(String a) {
-		super(a);
+	public View(String title) {
+		super(title);
 		controlersMaker();
 	}
 	public View() {
