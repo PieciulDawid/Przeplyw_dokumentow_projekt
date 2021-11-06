@@ -2,19 +2,19 @@ package Controllers;
 
 import Global.UIManager;
 import Views.MainMenuView;
-import Views.TestView;
+import Views.LoginView;
 import Views.View;
 
 import java.util.Objects;
 
-public class TestController extends Controller{
+public class LoginController extends Controller{
 	public void Show() {
-		UIManager.addWindow(new TestView());
+		UIManager.addWindow(new LoginView());
 	}
 	public void Login(String login, String password) {
 		// weryfikacja, czyli logowanie
 		if(!Objects.equals(login, "") || !Objects.equals(password, "")) {
-			View LoginView = new TestView();
+			View LoginView = new LoginView();
 			UIManager.popWindow();
 			UIManager.addWindow(LoginView);
 			return;

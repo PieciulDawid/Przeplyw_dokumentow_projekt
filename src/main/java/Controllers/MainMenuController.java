@@ -6,7 +6,7 @@ import Views.EmployeeView;
 public class MainMenuController extends Controller{
 	
 	public void Logout() {
-		View TestView = new TestView(/* ewentualne argumenty konstruktora*/);
+		View TestView = new LoginView(/* ewentualne argumenty konstruktora*/);
 		
 		UIManager.popWindow();
 		UIManager.addWindow(TestView);
@@ -22,6 +22,12 @@ public class MainMenuController extends Controller{
 		View EmployeeView = new EmployeeView(/* ewentualne argumenty konstruktora*/);
 		UIManager.hideTop();
 		UIManager.addWindow(EmployeeView);
+	}
+
+	public void ToClient(){
+		View ClientView = new ClientView(/* ewentualne argumenty konstruktora*/);
+		UIManager.hideTop();
+		UIManager.addWindow(ClientView);
 	}
 	
 }
