@@ -1,5 +1,6 @@
 package Global;
 
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.gui2.*;
 import com.googlecode.lanterna.screen.Screen;
@@ -12,6 +13,7 @@ import java.io.IOException;
 public class UIManager {
 	private static UIManager instance;
 	private MultiWindowTextGUI Gui;
+
 	
 	static void setup() throws IOException {
 		instance = new UIManager();
@@ -24,7 +26,7 @@ public class UIManager {
 		Gui = new MultiWindowTextGUI(new SeparateTextGUIThread.Factory(),
 				screen, new DefaultWindowManager(),
 				new WindowShadowRenderer(),
-				new EmptySpace(TextColor.ANSI.CYAN));
+				new EmptySpace(new TextColor.RGB(9,101,184)));
 		((AsynchronousTextGUIThread)Gui.getGUIThread()).start();
 	}
 	
