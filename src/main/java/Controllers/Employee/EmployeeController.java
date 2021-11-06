@@ -1,7 +1,8 @@
-package Controllers;
+package Controllers.Employee;
 
+import Controllers.Controller;
 import Global.UIManager;
-import Views.AddEmployeeView;
+import Views.Employee.AddEmployeeView;
 import Views.View;
 
 public class EmployeeController extends Controller {

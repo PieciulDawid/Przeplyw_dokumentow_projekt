@@ -1,11 +1,12 @@
-package Views;
+package Views.Product;
 
+import Views.View;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
 import java.util.Arrays;
 
-public class AddProductView extends View{
+public class AddProductView extends View {
     public AddProductView() {
         super("Dodaj nowy produkt");
 

@@ -1,7 +1,10 @@
-package Controllers;
+package Controllers.Product;
+import Controllers.Controller;
 import Global.UIManager;
 import Views.*;
-public class ProductController extends Controller{
+import Views.Product.AddProductView;
+
+public class ProductController extends Controller {
 
     public void AddProduct(){
         View AddProductView = new AddProductView();

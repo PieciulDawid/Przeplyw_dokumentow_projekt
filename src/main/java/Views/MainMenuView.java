@@ -38,7 +38,8 @@ public class MainMenuView extends View {
 					((MainMenuController)Controller).ToProduct();
 				})
 				.addItem("Kilenci", () -> {
-					((MainMenuController)Controller).ToClient();})
+					((MainMenuController)Controller).ToClient();
+				})
 				.addItem("Pracownicy", ()->{
 					((MainMenuController)Controller).ToEmployee();
 				})

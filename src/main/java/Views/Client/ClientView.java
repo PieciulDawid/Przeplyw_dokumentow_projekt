@@ -1,14 +1,14 @@
-package Views;
+package Views.Client;
 
-import Controllers.EmployeeController;
+import Controllers.Client.ClientController;
 import Views.View;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
 import java.util.Arrays;
 
-public class EmployeeView  extends View {
-    public EmployeeView() {
+public class ClientView extends View {
+    public ClientView() {
         super("Zarządzanie pracownikami");
         Panel panel = new Panel();
         panel.setLayoutManager(new GridLayout(2));
@@ -16,7 +16,7 @@ public class EmployeeView  extends View {
         panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 
         panel.addComponent(new Button("Dodaj",()->{
-            ((EmployeeController)Controller).AddEmployee();
+            ((ClientController)Controller).AddClient();
         }).setPreferredSize(new TerminalSize(7,1)));
         panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 

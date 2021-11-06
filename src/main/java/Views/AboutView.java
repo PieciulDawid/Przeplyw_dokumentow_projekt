@@ -1,6 +1,5 @@
 package Views;
 
-import Controllers.ClientController;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 

@@ -1,11 +1,12 @@
-package Views;
+package Views.Client;
 
+import Views.View;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
 import java.util.Arrays;
 
-public class AddClientView extends View{
+public class AddClientView extends View {
     public AddClientView() {
         super("Dodaj nowego klienta");
 

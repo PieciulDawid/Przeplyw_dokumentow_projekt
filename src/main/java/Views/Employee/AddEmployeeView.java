@@ -1,4 +1,4 @@
-package Views;
+package Views.Employee;
 
 import Views.View;
 import com.googlecode.lanterna.TerminalSize;
