@@ -3,10 +3,10 @@ package Models;
 public class ProductModel {
     private int Id;
     private String Name;
-    private String Price;
+    private float Price;
     private int Amount;
 
-    public ProductModel(int id, String name, String price, int amount) {
+    public ProductModel(int id, String name, float price, int amount) {
         Id = id;
         Name = name;
         Price = price;
@@ -20,7 +20,7 @@ public class ProductModel {
     public String getName() {
         return Name;
     }
-    public String getPrice() {
+    public float getPrice() {
         return Price;
     }
     public int getAmount() {
@@ -34,10 +34,15 @@ public class ProductModel {
     public void setName(String name) {
         Name = name;
     }
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         Price = price;
     }
     public void setAmount(int amount) {
         Amount = amount;
+    }
+    
+    @Override
+    public String toString() {
+        return "ProductModel{" + "Id=" + Id + ", Name='" + Name + '\'' + ", Price=" + Price + ", Amount=" + Amount + '}';
     }
 }
