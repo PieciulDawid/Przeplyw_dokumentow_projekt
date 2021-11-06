@@ -15,6 +15,11 @@
             <artifactId>lanterna</artifactId>
             <version>3.1.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.5.2</version>
+        </dependency>
     </dependencies>
 
     <properties>
