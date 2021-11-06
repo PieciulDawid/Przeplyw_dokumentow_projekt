@@ -11,13 +11,9 @@ public class CRUDView extends View{
 		super("CRUD");
 		Panel basePanel = new Panel();
 		basePanel.setLayoutManager(new GridLayout(2));
-		basePanel.addComponent(new ActionListBox()
-				.addItem("Akcja1", () -> {return;})
-				.addItem("Akcja2", () -> {return;})
-				.addItem("Akcja3", () -> {return;})
-				.addItem("Akcja4", () -> {return;})
-				.setPreferredSize(new TerminalSize(10,25))
-		);
+		
+		ActionListBox actionList = new ActionListBox();
+		basePanel.addComponent(actionList);
 		
 		Panel searchAndTablePanel = new Panel();
 		searchAndTablePanel.setLayoutManager(new LinearLayout(Direction.VERTICAL));
@@ -37,7 +33,39 @@ public class CRUDView extends View{
 		searchPanel.addComponent(searchTextBox);
 		searchPanel.addComponent(searchButton);
 		
-		Table<String> table = new Table<>("Imie", "Nazwisko");
+		Table<Object> table = new Table<Object>("Imie", "Nazwisko");
+		table.setSelectAction(() ->{
+			actionList.setEnabled(true);
+			setFocusedInteractable(actionList);
+			table.setEnabled(false);
+			// TODO tworzenie i przekazanie modelu
+		});
+		
+		actionList
+				.addItem("Akcja1", () -> {
+					table.setEnabled(true);
+					setFocusedInteractable(table);
+					actionList.setEnabled(false);
+				})
+				.addItem("Akcja2", () -> {
+					table.setEnabled(true);
+					setFocusedInteractable(table);
+					actionList.setEnabled(false);
+				})
+				.addItem("Akcja3", () -> {
+					table.setEnabled(true);
+					setFocusedInteractable(table);
+					actionList.setEnabled(false);
+				})
+				.addItem("Akcja4", () -> {
+					table.setEnabled(true);
+					setFocusedInteractable(table);
+					actionList.setEnabled(false);
+				})
+				.setPreferredSize(new TerminalSize(10,25))
+				.setEnabled(false);
+		
+		
 		table.getTableModel()
 				.addRow("Adrian", "Nowak")
 				.addRow("Jan", "Kowalski");
