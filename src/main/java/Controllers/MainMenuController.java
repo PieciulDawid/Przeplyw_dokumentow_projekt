@@ -1,6 +1,7 @@
 package Controllers;
 import Global.UIManager;
 import Views.*;
+import Views.EmployeeView;
 
 public class MainMenuController extends Controller{
 	
