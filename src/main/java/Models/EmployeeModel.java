@@ -1,19 +1,23 @@
 package Models;
 
 public class EmployeeModel {
-    private int id;
+    private int Id;
     private String Name;
     private String Surname;
     private String Login;
     private String Password;
     
-    public EmployeeModel(int id, String name, String Surname, String Login, String Password){
-
+    public EmployeeModel(int id, String name, String surname, String login, String password){
+        Id = id;
+        Name = name;
+        Surname = surname;
+        Login = login;
+        Password = password;
     }
 
     //Getters
     public int getId(){
-       return id;
+       return Id;
     }
     public String getName(){
         return Name;
@@ -28,9 +32,9 @@ public class EmployeeModel {
         return Password;
     }
 
-    //Seters
+    //Setters
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public void setName(String Name) {
