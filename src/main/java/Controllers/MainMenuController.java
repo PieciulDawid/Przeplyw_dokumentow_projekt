@@ -4,14 +4,16 @@ import Views.*;
 import Views.Client.ClientView;
 import Views.Employee.EmployeeView;
 import Views.Product.ProductView;
+import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 
 public class MainMenuController extends Controller{
 	
 	public void Logout() {
-		View TestView = new LoginView(/* ewentualne argumenty konstruktora*/);
+		View LoginView = new LoginView(/* ewentualne argumenty konstruktora*/);
 		
 		UIManager.popWindow();
-		UIManager.addWindow(TestView);
+		UIManager.addWindow(LoginView);
+		UIManager.showMessageDialog("", "Wylogowano", MessageDialogButton.OK);
 	}
 
 	public void ToProduct(){

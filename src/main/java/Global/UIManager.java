@@ -3,6 +3,8 @@ package Global;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.gui2.*;
+import com.googlecode.lanterna.gui2.dialogs.MessageDialog;
+import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -54,4 +56,9 @@ public class UIManager {
 		}
 	}
 	
+	public static void showMessageDialog(String title, String text, MessageDialogButton button) {
+		synchronized(UIManager.class) {
+			MessageDialog.showMessageDialog(instance.Gui, title, text, button);
+		}
+	}
 }

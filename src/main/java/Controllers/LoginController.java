@@ -4,6 +4,7 @@ import Global.UIManager;
 import Views.MainMenuView;
 import Views.LoginView;
 import Views.View;
+import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 
 import java.util.Objects;
 
@@ -17,6 +18,7 @@ public class LoginController extends Controller{
 			View LoginView = new LoginView();
 			UIManager.popWindow();
 			UIManager.addWindow(LoginView);
+			UIManager.showMessageDialog("", "Błąd logowania", MessageDialogButton.OK);
 			return;
 		}
 		
