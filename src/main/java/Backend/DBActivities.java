@@ -54,10 +54,10 @@ public class DBActivities {
 		try {
 			List<String[]> productsRaw = new CSVReader(new FileReader("users.csv")).readAll();
 			productModels = productsRaw.stream().map((String[] raw)->
-					new ProductModel(/*Integer.parseInt(raw[0]),
+					new ProductModel(Integer.parseInt(raw[0]),
 						raw[1],
 						raw[2],
-						Integer.parseInt(raw[3])*/)).collect(Collectors.toList());
+						Integer.parseInt(raw[3]))).collect(Collectors.toList());
 		}
 		catch(IOException | CsvException e) {
 			e.printStackTrace();

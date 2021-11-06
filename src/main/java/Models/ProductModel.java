@@ -4,9 +4,9 @@ public class ProductModel {
     private int Id;
     private String Name;
     private String Price;
-    private String Amount;
+    private int Amount;
 
-    public ProductModel(int id, String name, String price, String amount) {
+    public ProductModel(int id, String name, String price, int amount) {
         Id = id;
         Name = name;
         Price = price;
@@ -23,7 +23,7 @@ public class ProductModel {
     public String getPrice() {
         return Price;
     }
-    public String getAmount() {
+    public int getAmount() {
         return Amount;
     }
 
@@ -37,7 +37,7 @@ public class ProductModel {
     public void setPrice(String price) {
         Price = price;
     }
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         Amount = amount;
     }
 }
