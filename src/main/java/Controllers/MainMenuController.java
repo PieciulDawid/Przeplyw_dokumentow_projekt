@@ -29,5 +29,11 @@ public class MainMenuController extends Controller{
 		UIManager.hideTop();
 		UIManager.addWindow(ClientView);
 	}
+
+	public void ToAbout(){
+		View AboutView = new AboutView(/* ewentualne argumenty konstruktora*/);
+		UIManager.hideTop();
+		UIManager.addWindow(AboutView);
+	}
 	
 }

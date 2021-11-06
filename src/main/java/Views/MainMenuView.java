@@ -43,6 +43,9 @@ public class MainMenuView extends View {
 					((MainMenuController)Controller).ToEmployee();
 				})
 				.addItem("Zamowienia", () -> {return;})
+				.addItem("O nas", ()->{
+					((MainMenuController)Controller).ToAbout();
+				})
 		);
 		
 		
@@ -50,6 +53,7 @@ public class MainMenuView extends View {
 		panel.addComponent(new EmptySpace(new TerminalSize(0,2)));
 
 		panel.addComponent(new EmptySpace(new TerminalSize(0,0))); // Empty space underneath labels
+		panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 		panel.addComponent(new Button("Wyloguj", () ->{
 			((MainMenuController)Controller).Logout();
 		}));
