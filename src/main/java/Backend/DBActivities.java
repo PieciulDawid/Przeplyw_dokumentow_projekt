@@ -18,25 +18,32 @@ public class DBActivities {
 	private static ArrayList<ClientModel> clientModels;
 	private static ArrayList<OrderModel> orderModels;
 	private static ArrayList<EmployeeModel> employeeModels;
-	private static EmployeeModel loggedUser;
+	private static EmployeeModel loggedUser = null;
 	
-	private static EmployeeModel login(String login, String password) {
+	public static EmployeeModel login(String login, String password) {
+		if(loggedUser != null) {
+			return loggedUser;
+		}
 		EmployeeModel user = null;
 		
 		try {
 			Stream<String[]> users = new CSVReader(new FileReader("users.csv")).readAll().stream();
 			String[] userRaw = (String[])users.filter((String[] attr)->attr[3] == login && attr[4] == password).toArray()[0];
-			user = new EmployeeModel(Integer.parseInt(userRaw[0]),
+			user = new EmployeeModel(/*Integer.parseInt(userRaw[0]),
 					userRaw[1],
 					userRaw[2],
 					userRaw[3],
-					userRaw[4]);
+					userRaw[4]*/);
 		}
 		catch(IOException | CsvException e) {
 			e.printStackTrace();
 		}
 		
-		
+		loggedUser = user;
 		return user;
+	}
+	
+	public static void logout() {
+		loggedUser = null;
 	}
 }
