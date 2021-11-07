@@ -1,5 +1,14 @@
 package Models;
 
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class EmployeeModel {
     private int Id;
     private String Name;
@@ -52,5 +61,42 @@ public class EmployeeModel {
     @Override
     public String toString() {
         return "EmployeeModel{" + "Id=" + Id + ", Name='" + Name + '\'' + ", Surname='" + Surname + '\'' + ", Login='" + Login + '\'' + ", Password='" + Password + '\'' + '}';
+    }
+
+    private static final ArrayList<EmployeeModel> employeeModels = null;
+    private static EmployeeModel loggedUser = null;
+
+    public static EmployeeModel login(String login, String password) {
+        try {
+            List<String[]> users = new CSVReader(new FileReader("src/main/java/Backend/users.csv"))
+                    .readAll()
+                    .stream()
+                    .filter((String[] attr)->attr[3].equals(login) && attr[4].equals(password))
+                    .collect(Collectors.toList());
+            if(users.isEmpty()) {
+                return null;
+            }
+            String[] userRaw = users.get(0);
+            loggedUser = new EmployeeModel(
+                    Integer.parseInt(userRaw[0]),
+                    userRaw[1],
+                    userRaw[2],
+                    userRaw[3],
+                    userRaw[4]
+            );
+        }
+        catch(IOException | CsvException e) {
+            e.printStackTrace();
+        }
+
+        return loggedUser;
+    }
+
+    public static EmployeeModel getLoggedUser() {
+        return loggedUser;
+    }
+
+    public static void logout() {
+        loggedUser = null;
     }
 }
