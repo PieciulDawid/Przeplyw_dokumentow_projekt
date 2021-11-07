@@ -37,28 +37,37 @@ public class CRUDView extends View{
 		table.setSelectAction(() ->{
 			actionList.setEnabled(true);
 			setFocusedInteractable(actionList);
-			table.setEnabled(false);
+			searchTextBox.setEnabled(false);
+			searchButton.setEnabled(false);
 			// TODO tworzenie i przekazanie modelu
 		});
 		
 		actionList
 				.addItem("Akcja1", () -> {
 					table.setEnabled(true);
+					searchTextBox.setEnabled(true);
+					searchButton.setEnabled(true);
 					setFocusedInteractable(table);
 					actionList.setEnabled(false);
 				})
 				.addItem("Akcja2", () -> {
 					table.setEnabled(true);
+					searchTextBox.setEnabled(true);
+					searchButton.setEnabled(true);
 					setFocusedInteractable(table);
 					actionList.setEnabled(false);
 				})
 				.addItem("Akcja3", () -> {
 					table.setEnabled(true);
+					searchTextBox.setEnabled(true);
+					searchButton.setEnabled(true);
 					setFocusedInteractable(table);
 					actionList.setEnabled(false);
 				})
 				.addItem("Akcja4", () -> {
 					table.setEnabled(true);
+					searchTextBox.setEnabled(true);
+					searchButton.setEnabled(true);
 					setFocusedInteractable(table);
 					actionList.setEnabled(false);
 				})
