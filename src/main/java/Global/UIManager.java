@@ -11,6 +11,8 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class UIManager {
 	private static UIManager instance;
@@ -25,11 +27,38 @@ public class UIManager {
 		Terminal terminal = new DefaultTerminalFactory().createTerminal();
 		Screen screen = new TerminalScreen(terminal);
 		screen.startScreen();
+
+		TextColor colors[] = new TextColor[510];
+
+		for (int i = 0; i<255; i++) {
+			colors[i] = new TextColor.RGB(0, i, 255);
+		}
+		for (int i = 255; i<510; i++) {
+			colors[i] = new TextColor.RGB(0, 510-i, 255);
+		}
+
+
+		EmptySpace background = new EmptySpace(new TextColor.RGB(9,101,184));
 		Gui = new MultiWindowTextGUI(new SeparateTextGUIThread.Factory(),
 				screen, new DefaultWindowManager(),
 				new WindowShadowRenderer(),
-				new EmptySpace(new TextColor.RGB(9,101,184)));
+				background);
 		((AsynchronousTextGUIThread)Gui.getGUIThread()).start();
+		Thread backgroudColorChanger = new Thread(()->{
+			int iterator = 0;
+			while(true) {
+				iterator = (iterator + 1) % 510;
+				background.setColor(colors[iterator]);
+				background.invalidate();
+				try {
+					TimeUnit.MILLISECONDS.sleep(10);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+			}
+		});
+		backgroudColorChanger.start();
 	}
 	
 	public static void addWindow(Window window) {
