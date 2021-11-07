@@ -9,7 +9,7 @@ public class AddProductController extends Controller {
 
     public void AddProduct(Table<Object> table, String Name, String Price, String Amount){
         ProductModel productModel = new ProductModel(1, Name, Float.parseFloat(Price), Integer.parseInt(Amount));
-        ProductModel.add(productModel); //TODO AKCJA KONTROLERA (MODYFIKACJA DANYCH!!!!!!)
+        ProductModel.add(productModel);
         table.getTableModel().addRow(productModel.toTableRow());
     }
 }

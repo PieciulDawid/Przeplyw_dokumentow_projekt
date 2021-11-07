@@ -37,7 +37,10 @@ public class AboutController extends Controller {
             animation.interrupt();
             GoBack();
         });
-        panel.addComponent(1, stopButton);
+        Panel panel2 = Panels.horizontal();
+        panel.addComponent(panel2);
+        panel2.addComponent(new EmptySpace(new TerminalSize(36,1)));
+        panel2.addComponent(1, stopButton);
         window.setFocusedInteractable(stopButton);
         animation.start();
         window.setHints(Arrays.asList(Window.Hint.CENTERED, Window.Hint.FIXED_SIZE));

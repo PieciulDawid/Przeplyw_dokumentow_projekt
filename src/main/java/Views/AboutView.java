@@ -29,12 +29,15 @@ public class AboutView extends View {
                         "|--------------------------------------------------------------------|"));
 
 
-        panel.addComponent(new EmptySpace(new TerminalSize(0,2)));
-        panel.addComponent(new Button("Żaba",()->{
+        panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
+        Panel panel2 = Panels.horizontal();
+        panel.addComponent(panel2);
+        panel2.addComponent(new EmptySpace(new TerminalSize(27,2)));
+        panel2.addComponent(new Button("Żaba",()->{
             ((AboutController)Controller).AddFrog();
 
         }));
-        panel.addComponent(new Button("Cofnij",()->{
+        panel2.addComponent(new Button("Cofnij",()->{
             Controller.GoBack();
         }));
 

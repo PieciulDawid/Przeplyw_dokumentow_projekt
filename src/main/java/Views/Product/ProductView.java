@@ -1,6 +1,5 @@
 package Views.Product;
 
-import Controllers.AboutController;
 import Controllers.Product.ProductController;
 import Models.ProductModel;
 import Views.View;
@@ -9,7 +8,7 @@ import com.googlecode.lanterna.gui2.*;
 import com.googlecode.lanterna.gui2.table.Table;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ProductView extends View {
@@ -39,9 +38,12 @@ public class ProductView extends View {
         searchPanel.addComponent(searchTextBox);
         searchPanel.addComponent(searchButton);
 
+        AtomicInteger Id = new AtomicInteger();
+
         Table<Object> table = new Table<Object>("ID", "Nazwa", "Cena", "Ilość");
         table.setSelectAction(() ->{
             // TODO popranie wiersza z tabeli do pola widoku
+            Id.set(table.getSelectedRow());
             actionList.setEnabled(true);
             setFocusedInteractable(actionList);
             searchTextBox.setEnabled(false);
@@ -71,6 +73,8 @@ public class ProductView extends View {
                     searchButton.setEnabled(true);
                     setFocusedInteractable(table);
                     actionList.setEnabled(false);
+                    System.out.println(Id);
+                    ((ProductController)Controller).DeleteProduct(table, Id);
                 })
                 .setPreferredSize(new TerminalSize(10,25))
                 .setEnabled(false);
