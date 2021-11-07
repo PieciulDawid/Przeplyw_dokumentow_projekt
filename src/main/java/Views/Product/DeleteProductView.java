@@ -32,7 +32,6 @@ public class DeleteProductView  extends View {
         panel2.addComponent(new Button("Usuń",()->{
 
             ((DeleteProductController)Controller).DeleteProduct(table, Id);
-            /*table.getTableModel().*/
             Controller.CancelAction();
         }));
 

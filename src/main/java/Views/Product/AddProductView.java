@@ -37,7 +37,6 @@ public class AddProductView extends View {
         panel.addComponent(new Button("Dodaj",()->{
 
             ((AddProductController)Controller).AddProduct(table, Name.getText(), Price.getText(), Amount.getText());
-            /*table.getTableModel().*/
             Controller.CancelAction();
         }));
 

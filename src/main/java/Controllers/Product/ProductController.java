@@ -4,6 +4,7 @@ import Global.UIManager;
 import Views.*;
 import Views.Product.AddProductView;
 import Views.Product.DeleteProductView;
+import Views.Product.ModifyProductView;
 import com.googlecode.lanterna.gui2.table.Table;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -17,7 +18,10 @@ public class ProductController extends Controller {
     public void DeleteProduct(Table<Object> table, AtomicInteger Id){
         View DeleteProductView = new DeleteProductView(table, Id);
         UIManager.addWindow(DeleteProductView);
-
+    }
+    public void ModiftProduct(Table<Object> table, AtomicInteger Id){
+        View ModifyProductView = new ModifyProductView(table, Id);
+        UIManager.addWindow(ModifyProductView);
     }
 
 
