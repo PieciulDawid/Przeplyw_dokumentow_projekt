@@ -20,7 +20,7 @@ public class AboutController extends Controller {
         Thread animation = new Thread(()->{
             while(true) {
                 frogList.frogList.stream().forEachOrdered(frame ->{
-                    panel.addComponent(frame);
+                    panel.addComponent(0, frame);
                     try {
                         TimeUnit.MILLISECONDS.sleep(100);
                     } catch (InterruptedException e) {}
@@ -31,18 +31,19 @@ public class AboutController extends Controller {
                 }
             }
         });
+        Button stopButton = new Button("Cofnij",()->{
+            //zatrzymanie wątku
+            shouldStop.set(true);
+            animation.interrupt();
+            GoBack();
+        });
+        panel.addComponent(1, stopButton);
+        window.setFocusedInteractable(stopButton);
         animation.start();
         window.setHints(Arrays.asList(Window.Hint.CENTERED, Window.Hint.FIXED_SIZE));
         window.setFixedSize(new TerminalSize(79,43));
         window.setComponent(panel);
         UIManager.addWindow(window);
-        panel.addComponent(new Button("Cofnij",()->{
-            //zatrzymanie wątku
-            shouldStop.set(true);
-            animation.interrupt();
-            GoBack();
-        }));
-
     }
     private class Frog {
         public Frog(){

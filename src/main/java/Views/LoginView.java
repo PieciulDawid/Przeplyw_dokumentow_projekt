@@ -13,16 +13,6 @@ import java.util.Arrays;
 public class LoginView extends View{
 	public LoginView() {
 		super("Logowanie");
-		System.out.println("____________________     ________  ________       ________ __________ \n" +
-				"\\______   \\______   \\    \\______ \\ \\______ \\      \\______ \\\\______   \\\n" +
-				" |    |  _/|    |  _/     |    |  \\ |    |  \\      |    |  \\|     ___/\n" +
-				" |    |   \\|    |   \\     |    `   \\|    `   \\     |    `   \\    |    \n" +
-				" |______  /|______  /____/_______  /_______  /____/_______  /____|    \n" +
-				"        \\/        \\/_____/       \\/        \\/_____/       \\/          \n" +
-				"\n" +
-				"|--------------------------------------------------------------------|\n" +
-				"|      Bartłomiej Busłowski    Dawid Dmitruk     Dawid Pieciul       |\n" +
-				"|--------------------------------------------------------------------|");
 
 		Panel panel = new Panel();
 		panel.setLayoutManager(new GridLayout(2));
@@ -42,8 +32,6 @@ public class LoginView extends View{
 		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 		panel.addComponent(new Button("Zaloguj", () -> {
-			// TODO walidacja
-			
 			((LoginController)Controller).Login(login.getText(), password.getText());
 		}));
 		

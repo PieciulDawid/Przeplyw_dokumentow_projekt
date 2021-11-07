@@ -11,6 +11,16 @@ import java.io.IOException;
 public class Main {
 
     public  static void main(String[] args) throws IOException {
+        System.out.println("____________________     ________  ________       ________ __________ \n" +
+                "\\______   \\______   \\    \\______ \\ \\______ \\      \\______ \\\\______   \\\n" +
+                " |    |  _/|    |  _/     |    |  \\ |    |  \\      |    |  \\|     ___/\n" +
+                " |    |   \\|    |   \\     |    `   \\|    `   \\     |    `   \\    |    \n" +
+                " |______  /|______  /____/_______  /_______  /____/_______  /____|    \n" +
+                "        \\/        \\/_____/       \\/        \\/_____/       \\/          \n" +
+                "\n" +
+                "|--------------------------------------------------------------------|\n" +
+                "|      Bartłomiej Busłowski    Dawid Dmitruk     Dawid Pieciul       |\n" +
+                "|--------------------------------------------------------------------|");
         //  Test bazy danych dla ProductModel
         /*
             DBActivities.getProducts().forEach((x, y) -> System.out.println(y));

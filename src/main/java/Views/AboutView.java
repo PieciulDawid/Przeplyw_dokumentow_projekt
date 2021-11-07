@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class AboutView extends View {
-    public AboutView() throws InterruptedException {
+    public AboutView() {
         super("O nas");
         Panel panel = Panels.vertical();
 

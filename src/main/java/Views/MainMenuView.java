@@ -1,6 +1,7 @@
 package Views;
 
 import Controllers.MainMenuController;
+import Models.EmployeeModel;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
@@ -12,8 +13,9 @@ public class MainMenuView extends View {
 		super("Menu");
 		Panel panel = new Panel();
 		panel.setLayoutManager(new GridLayout(2));
-		panel.addComponent(new Label("Zalogowano : "));
-		panel.addComponent(new Label("lukasz"));
+		panel.addComponent(new Label("Zalogowano jako: "));
+		panel.addComponent(new Label(EmployeeModel.getLoggedUser().getName() + " " +
+				EmployeeModel.getLoggedUser().getSurname()));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 
@@ -45,11 +47,7 @@ public class MainMenuView extends View {
 				})
 				.addItem("Zamowienia", () -> {return;})
 				.addItem("O nas", ()->{
-					try {
-						((MainMenuController)Controller).ToAbout();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					((MainMenuController)Controller).ToAbout();
 				})
 		);
 		

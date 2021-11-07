@@ -34,7 +34,7 @@ public class MainMenuController extends Controller{
 		UIManager.addWindow(ClientView);
 	}
 
-	public void ToAbout() throws InterruptedException {
+	public void ToAbout(){
 		View AboutView = new AboutView(/* ewentualne argumenty konstruktora*/);
 		UIManager.hideTop();
 		UIManager.addWindow(AboutView);

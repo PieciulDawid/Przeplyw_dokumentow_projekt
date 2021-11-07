@@ -1,6 +1,7 @@
 package Controllers;
 
 import Global.UIManager;
+import Models.EmployeeModel;
 import Views.MainMenuView;
 import Views.LoginView;
 import Views.View;
@@ -14,7 +15,7 @@ public class LoginController extends Controller{
 	}
 	public void Login(String login, String password) {
 		// weryfikacja, czyli logowanie
-		if(!Objects.equals(login, "") || !Objects.equals(password, "")) {
+		if(EmployeeModel.login(login, password) == null) {
 			View LoginView = new LoginView();
 			UIManager.popWindow();
 			UIManager.addWindow(LoginView);
