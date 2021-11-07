@@ -45,7 +45,9 @@ public class MainMenuView extends View {
 				.addItem("Pracownicy", ()->{
 					((MainMenuController)Controller).ToEmployee();
 				})
-				.addItem("Zamowienia", () -> {return;})
+				.addItem("Zamowienia", ()->{
+					((MainMenuController)Controller).ToOrders();
+				})
 				.addItem("O nas", ()->{
 					((MainMenuController)Controller).ToAbout();
 				})

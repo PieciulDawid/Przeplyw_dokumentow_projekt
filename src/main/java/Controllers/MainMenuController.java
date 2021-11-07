@@ -3,6 +3,7 @@ import Global.UIManager;
 import Views.*;
 import Views.Client.ClientView;
 import Views.Employee.EmployeeView;
+import Views.Orders.OrdersView;
 import Views.Product.ProductView;
 import com.googlecode.lanterna.gui2.dialogs.MessageDialogButton;
 
@@ -32,6 +33,10 @@ public class MainMenuController extends Controller{
 		View ClientView = new ClientView(/* ewentualne argumenty konstruktora*/);
 		UIManager.hideTop();
 		UIManager.addWindow(ClientView);
+	}
+	public void ToOrders(){
+		View OrdersView = new OrdersView(/* ewentualne argumenty konstruktora*/);
+		UIManager.addWindow(OrdersView);
 	}
 
 	public void ToAbout(){
