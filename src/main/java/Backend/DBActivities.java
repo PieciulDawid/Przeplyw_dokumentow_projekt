@@ -12,12 +12,14 @@ import com.opencsv.exceptions.CsvException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
 public class DBActivities {
-	private static List<ProductModel> productModels = null;
+	private static TreeMap<Integer,ProductModel> productModels = null;
 	private static final ArrayList<ClientModel> clientModels = null;
 	private static final ArrayList<OrderModel> orderModels = null;
 	private static final ArrayList<EmployeeModel> employeeModels = null;
@@ -25,13 +27,22 @@ public class DBActivities {
 	
 	public static EmployeeModel login(String login, String password) {
 		try {
-			Stream<String[]> users = new CSVReader(new FileReader("users.csv")).readAll().stream();
-			String[] userRaw = (String[])users.filter((String[] attr)->attr[3] == login && attr[4] == password).toArray()[0];
-			loggedUser = new EmployeeModel(Integer.parseInt(userRaw[0]),
+			List<String[]> users = new CSVReader(new FileReader("src/main/java/Backend/users.csv"))
+					.readAll()
+					.stream()
+					.filter((String[] attr)->attr[3].equals(login) && attr[4].equals(password))
+					.collect(Collectors.toList());
+			if(users.isEmpty()) {
+				return null;
+			}
+			String[] userRaw = users.get(0);
+			loggedUser = new EmployeeModel(
+					Integer.parseInt(userRaw[0]),
 					userRaw[1],
 					userRaw[2],
 					userRaw[3],
-					userRaw[4]);
+					userRaw[4]
+			);
 		}
 		catch(IOException | CsvException e) {
 			e.printStackTrace();
@@ -48,19 +59,26 @@ public class DBActivities {
 		loggedUser = null;
 	}
 	
-	public static List<ProductModel> getProducts() {
+	public static TreeMap<Integer,ProductModel> getProducts() {
 		if(productModels != null) {
 			return productModels;
 		}
 		
 		try {
 			List<String[]> productsRaw = new CSVReader(new FileReader("src/main/java/Backend/products.csv")).readAll();
-			productModels = productsRaw.stream().map((String[] raw)->
-					new ProductModel(Integer.parseInt(raw[0]),
-							raw[1],
-							Float.parseFloat(raw[2]),
-							Integer.parseInt(raw[3])))
-					.collect(Collectors.toList());
+			productModels = productsRaw.stream()
+					.map((String[] raw)->
+							new ProductModel(
+									Integer.parseInt(raw[0]),
+									raw[1],
+									Float.parseFloat(raw[2]),
+									Integer.parseInt(raw[3])
+							))
+					.collect(Collectors.toMap(
+							ProductModel::getId,
+							Function.identity(),
+							(a, b)-> a,
+							TreeMap::new));
 		}
 		catch(IOException | CsvException e) {
 			e.printStackTrace();
@@ -69,48 +87,56 @@ public class DBActivities {
 		return productModels;
 	}
 	
-	public static List<ProductModel> searchProducts(String keyword) {
-		List<ProductModel> result = getProducts()
-				.stream()
+	public static TreeMap<Integer,ProductModel> searchProducts(String keyword) {
+		TreeMap<Integer,ProductModel> result = getProducts().values().stream()
 				.filter((ProductModel item)->
-						item.getName().substring(0,keyword.length()).equalsIgnoreCase(keyword)
-				)
-				.collect(Collectors.toList());
+						item.getName().substring(0,keyword.length()).equalsIgnoreCase(keyword))
+				.collect(Collectors.toMap(
+						ProductModel::getId,
+						Function.identity(),
+						(a, b)-> a,
+						TreeMap::new));
 		return result;
 	}
 	
 	public static ProductModel getProduct(int id) {
-		List<ProductModel> products = getProducts();
-		return products.get(id);
+		return getProducts().get(id);
 	}
 	
 	public static void addProduct(ProductModel product) {
-		List<ProductModel> products = getProducts();
-		product.setId(products.get(products.size()-1).getId()+1);
-		products.add(product);
+		TreeMap<Integer,ProductModel> products = getProducts();
+		product.setId(products.lastKey()+1);
+		products.put(product.getId(), product);
 	}
 	
-	//	TODO naprawić modyfikację
 	public static void modifyProduct(ProductModel product) {
-		List<ProductModel> products = getProducts();
-		products.set(product.getId(),product);
+		getProducts().replace(product.getId(), product);
 	}
 	
-	//	TODO dodać usuwanie
 	
+	public static void deleteProduct(ProductModel product) {
+		getProducts().remove(product.getId());
+	}
+	
+	public static void deleteProduct(int id) {
+		getProducts().remove(id);
+	}
 	
 	public static void saveChangesProduct() {
-		List<ProductModel> products = getProducts();
+		TreeMap<Integer,ProductModel> products = getProducts();
 		try {
 			ICSVWriter writer = new CSVWriterBuilder(new FileWriter("src/main/java/Backend/products.csv")).build();
-			List<String[]> rawProducts = products.stream().map((ProductModel product)->{
-				String[] rawProduct = new String[4];
-				rawProduct[0] = String.valueOf(product.getId());
-				rawProduct[1] = product.getName();
-				rawProduct[2] = String.valueOf(product.getPrice());
-				rawProduct[3] = String.valueOf(product.getAmount());
-				return rawProduct;
-			}).collect(Collectors.toList());
+			List<String[]> rawProducts = products.values().stream()
+					.map((ProductModel product)->{
+						String[] rawProduct = new String[4];
+						rawProduct[0] = String.valueOf(product.getId());
+						rawProduct[1] = product.getName();
+						rawProduct[2] = String.valueOf(product.getPrice());
+						rawProduct[3] = String.valueOf(product.getAmount());
+						return rawProduct;
+					})
+					.collect(Collectors.toList());
+			
 			writer.writeAll(rawProducts);
 			writer.flushQuietly();
 		}
@@ -119,4 +145,5 @@ public class DBActivities {
 		}
 	}
 	
+	//	TODO CRUD identyczny z powyższym dla każdego modelu
 }

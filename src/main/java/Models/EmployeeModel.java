@@ -36,7 +36,6 @@ public class EmployeeModel {
     public void setId(int id) {
         this.Id = id;
     }
-
     public void setName(String Name) {
         this.Name = Name;
     }
@@ -49,5 +48,9 @@ public class EmployeeModel {
     public void setPassword(String Password) {
         this.Password = Password;
     }
-
+    
+    @Override
+    public String toString() {
+        return "EmployeeModel{" + "Id=" + Id + ", Name='" + Name + '\'' + ", Surname='" + Surname + '\'' + ", Login='" + Login + '\'' + ", Password='" + Password + '\'' + '}';
+    }
 }
