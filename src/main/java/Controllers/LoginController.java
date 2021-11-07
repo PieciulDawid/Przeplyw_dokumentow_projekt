@@ -32,4 +32,7 @@ public class LoginController extends Controller{
 		UIManager.popWindow();
 		UIManager.addWindow(MainMenu); // widok zawsze powinien być tworzony przez popowaniem poprzedniego
 	}
+	public void Exit(){
+		UIManager.closeGui();
+	}
 }

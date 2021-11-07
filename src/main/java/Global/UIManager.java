@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class UIManager {
 	private static UIManager instance;
-	private MultiWindowTextGUI Gui;
+	private final MultiWindowTextGUI Gui;
 
 	
 	static void setup() throws IOException {
@@ -59,6 +59,17 @@ public class UIManager {
 	public static void showMessageDialog(String title, String text, MessageDialogButton button) {
 		synchronized(UIManager.class) {
 			MessageDialog.showMessageDialog(instance.Gui, title, text, button);
+		}
+	}
+	
+	public static void closeGui() {
+		synchronized(UIManager.class) {
+			try {
+				instance.Gui.getScreen().close();
+				((TerminalScreen)instance.Gui.getScreen()).getTerminal().close();
+			}
+			catch(IOException e) {
+			}
 		}
 	}
 }

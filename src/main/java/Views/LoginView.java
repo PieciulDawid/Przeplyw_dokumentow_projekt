@@ -30,7 +30,9 @@ public class LoginView extends View{
 		
 		panel.addComponent(new EmptySpace(new TerminalSize(0,0))); // Empty space underneath labels
 		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
-		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
+		panel.addComponent(new Button("Wyjdź", () -> {
+			((LoginController)Controller).Exit();
+		}));
 		panel.addComponent(new Button("Zaloguj", () -> {
 			((LoginController)Controller).Login(login.getText(), password.getText());
 		}));
