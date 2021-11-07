@@ -134,19 +134,23 @@ public class ClientModel implements Model {
         TreeMap<Integer,ClientModel> clients = getAll();
         client.setId(clients.lastKey()+1);
         clients.put(client.getId(), client);
+        saveChanges();
     }
 
     public static void modify(ClientModel client) {
         getAll().replace(client.getId(), client);
+        saveChanges();
     }
 
 
     public static void delete(ClientModel client) {
         getAll().remove(client.getId());
+        saveChanges();
     }
 
     public static void delete(int id) {
         getAll().remove(id);
+        saveChanges();
     }
 
     public static void saveChanges() {
