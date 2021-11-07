@@ -19,9 +19,13 @@ public class View extends BasicWindow {
 
 	private void controlersMaker() {
 		String className = this.getClass().getSimpleName();
+		className = className.substring(0, className.length() - 4);
+		if (!this.getClass().getPackage().getName().equals("Views")) {
+			className = this.getClass().getPackage().getName().substring(6) + "." + className;
+		}
 		try {
 			Controller = (Controllers.Controller) Class.
-					forName("Controllers." + className.substring(0, className.length() - 4) + "Controller").
+					forName("Controllers." + className + "Controller").
 					getDeclaredConstructor().
 					newInstance();
 		} catch (InstantiationException e) {
