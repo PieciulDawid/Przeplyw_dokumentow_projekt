@@ -55,6 +55,10 @@ public class ProductModel {
     public String toString() {
         return "ProductModel{" + "Id=" + Id + ", Name='" + Name + '\'' + ", Price=" + Price + ", Amount=" + Amount + '}';
     }
+    
+    public Object[] toTableRow() {
+        return new Object[] { Id, Name, Price, Amount };
+    }
 
     private static TreeMap<Integer,ProductModel> productModels = null;
 
