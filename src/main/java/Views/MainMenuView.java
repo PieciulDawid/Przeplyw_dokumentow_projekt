@@ -45,7 +45,11 @@ public class MainMenuView extends View {
 				})
 				.addItem("Zamowienia", () -> {return;})
 				.addItem("O nas", ()->{
-					((MainMenuController)Controller).ToAbout();
+					try {
+						((MainMenuController)Controller).ToAbout();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				})
 		);
 		

@@ -43,7 +43,9 @@ public class Main {
         DBActivities.getProducts().stream().forEachOrdered(System.out::println);
         DBActivities.saveChangesProduct();*/
         
-        /*UIManager.setup(); // Setup UIManagera
-        UIManager.addWindow(new CRUDView()); // Wyświetlenie pierwszego widoku*/
+        UIManager.setup(); // Setup UIManagera
+        UIManager.addWindow(new LoginView()); // Wyświetlenie pierwszego widoku
     }
 }
+
+
