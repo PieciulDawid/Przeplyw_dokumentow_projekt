@@ -66,6 +66,7 @@ public class ClientView extends View {
                     searchButton.setEnabled(true);
                     setFocusedInteractable(table);
                     actionList.setEnabled(false);
+                    ((ClientController)Controller).ModifyClient(table, Id);
                 })
                 .addItem("Usuń", () -> {
                     table.setEnabled(true);
