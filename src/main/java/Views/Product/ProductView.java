@@ -22,7 +22,7 @@ public class ProductView extends View {
 
         Panel searchAndTablePanel = new Panel();
         searchAndTablePanel.setLayoutManager(new LinearLayout(Direction.VERTICAL));
-        //searchAndTablePanel.setPreferredSize(new TerminalSize(50,25));
+        searchAndTablePanel.setPreferredSize(new TerminalSize(50,25));
         basePanel.addComponent(searchAndTablePanel);
 
         Panel searchPanel = new Panel();

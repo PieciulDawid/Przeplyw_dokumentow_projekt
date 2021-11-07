@@ -9,14 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DeleteProductController  extends Controller {
 
     public void DeleteProduct(Table<Object> table, AtomicInteger Id){
-/*        //System.out.println(Id);
-        //System.out.println(ProductModel.get(Id.intValue()+1));
-        //System.out.println(table.getTableModel().getRow(Id.intValue()));
-        System.out.println(table.getTableModel());
-        //ProductModel productModel = (ProductModel) table.getTableModel().getRow(Id.intValue());
-        //ProductModel.delete(productModel);
-//        ProductModel.delete(Id.intValue()+1);
-        table.getTableModel().removeRow(Id.intValue());*/
+       System.out.println(Id.intValue());
+        ProductModel.delete(ProductModel.search((String)table.getTableModel().getCell(1,Id.intValue())).firstKey());
+        table.getTableModel().removeRow(Id.intValue());
     }
 
 }
