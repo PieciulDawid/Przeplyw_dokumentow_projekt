@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DeleteClientController extends Controller {
 
     public void DeleteClient(Table<Object> table, AtomicInteger Id){
-        ClientModel.delete(ClientModel.search((String)table.getTableModel().getCell(1,Id.intValue())).firstKey());
+        ClientModel.delete((int)table.getTableModel().getCell(0,Id.intValue()));
         table.getTableModel().removeRow(Id.intValue());
     }
 
