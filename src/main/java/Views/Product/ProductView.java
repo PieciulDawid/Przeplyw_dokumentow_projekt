@@ -42,7 +42,6 @@ public class ProductView extends View {
 
         Table<Object> table = new Table<Object>("ID", "Nazwa", "Cena", "Ilość");
         table.setSelectAction(() ->{
-            // TODO popranie wiersza z tabeli do pola widoku
             Id.set(table.getSelectedRow());
             actionList.setEnabled(true);
             setFocusedInteractable(actionList);
