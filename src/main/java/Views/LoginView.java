@@ -14,30 +14,32 @@ public class LoginView extends View{
 	public LoginView() {
 		super("Logowanie");
 
-		Panel panel = new Panel();
-		panel.setLayoutManager(new GridLayout(2));
-		
+		Panel panel = Panels.horizontal();
+		Panel leftPanel = Panels.vertical();
+		Panel rightPanel = Panels.vertical();
+		panel.addComponent(leftPanel).addComponent(rightPanel);
 		
 		TextBox login = new TextBox("", TextBox.Style.SINGLE_LINE);
 		TextBox password = new TextBox("", TextBox.Style.SINGLE_LINE);
-		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
-		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
-		panel.addComponent(new Label("Login"));
-		panel.addComponent(login);
+		leftPanel.addComponent(new EmptySpace(new TerminalSize(0,1)));
+		rightPanel.addComponent(new EmptySpace(new TerminalSize(0,1)));
+		leftPanel.addComponent(new Label("Login"));
+		rightPanel.addComponent(login);
 		
-		panel.addComponent(new Label("Hasło"));
-		panel.addComponent(password.setMask('*'));
+		leftPanel.addComponent(new Label("Hasło"));
+		rightPanel.addComponent(password.setMask('*'));
 		
-		panel.addComponent(new EmptySpace(new TerminalSize(0,0))); // Empty space underneath labels
-		panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
-		panel.addComponent(new Button("Wyjdź", () -> {
+		leftPanel.addComponent(new EmptySpace(new TerminalSize(0,1))); // Empty space underneath labels
+		rightPanel.addComponent(new EmptySpace(new TerminalSize(0,1)));
+		leftPanel.addComponent(new Button("Wyjdź", () -> {
 			((LoginController)Controller).Exit();
 		}));
-		panel.addComponent(new Button("Zaloguj", () -> {
+		rightPanel.addComponent(new Button("Zaloguj", () -> {
 			((LoginController)Controller).Login(login.getText(), password.getText());
 		}));
 		
 		setHints(Arrays.asList(Window.Hint.CENTERED));
 		setComponent(panel);
+		setFocusedInteractable(login);
 	}
 }
