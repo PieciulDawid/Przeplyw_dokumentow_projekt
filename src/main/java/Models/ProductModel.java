@@ -6,11 +6,12 @@ import com.opencsv.exceptions.CsvException;
 
 import java.io.*;
 import java.util.List;
+import java.util.Locale;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class ProductModel {
+public class ProductModel implements Model {
     private int Id;
     private String Name;
     private float Price;
@@ -91,9 +92,10 @@ public class ProductModel {
     }
 
     public static TreeMap<Integer,ProductModel> search(String keyword) {
+        String keywordLowerCase = keyword.toLowerCase(Locale.ROOT);
         TreeMap<Integer,ProductModel> result = getAll().values().stream()
                 .filter((ProductModel item)->
-                        item.getName().substring(0,keyword.length()).equalsIgnoreCase(keyword))
+                        item.getName().toLowerCase(Locale.ROOT).startsWith(keywordLowerCase))
                 .collect(Collectors.toMap(
                         ProductModel::getId,
                         Function.identity(),

@@ -9,11 +9,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class EmployeeModel {
+public class EmployeeModel implements Model {
     private int Id;
     private String Name;
     private String Surname;
@@ -67,6 +69,10 @@ public class EmployeeModel {
         return "EmployeeModel{" + "Id=" + Id + ", Name='" + Name + '\'' + ", Surname='" + Surname + '\'' + ", Login='" + Login + '\'' + ", Password='" + Password + '\'' + '}';
     }
 
+    public Object[] toTableRow() {
+        return new Object[] { Id, Name, Surname};
+    }
+    
     private static TreeMap<Integer, EmployeeModel> employeeModels = null;
     private static EmployeeModel loggedUser = null;
 
@@ -110,7 +116,7 @@ public class EmployeeModel {
         }
 
         try {
-            List<String[]> employeesRaw = new CSVReader(new FileReader("src/main/java/Backend/products.csv")).readAll();
+            List<String[]> employeesRaw = new CSVReader(new FileReader("src/main/java/Backend/users.csv")).readAll();
             employeeModels = employeesRaw.stream()
                     .map((String[] raw)->
                             new EmployeeModel(
@@ -134,9 +140,12 @@ public class EmployeeModel {
     }
 
     public static TreeMap<Integer,EmployeeModel> searchEmployee(String keyword) {
+        String keywordLowerCase = keyword.toLowerCase(Locale.ROOT);
         TreeMap<Integer,EmployeeModel> result = getAll().values().stream()
-                .filter((EmployeeModel item)->
-                        item.getName().substring(0,keyword.length()).equalsIgnoreCase(keyword))
+                .filter((EmployeeModel item)->{
+                    return item.getName().toLowerCase(Locale.ROOT).startsWith(keywordLowerCase) ||
+                            item.getSurname().toLowerCase(Locale.ROOT).startsWith(keywordLowerCase);
+                })
                 .collect(Collectors.toMap(
                         EmployeeModel::getId,
                         Function.identity(),
@@ -171,7 +180,7 @@ public class EmployeeModel {
     public static void saveChanges() {
         TreeMap<Integer,EmployeeModel> employees = getAll();
         try {
-            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("src/main/java/Backend/products.csv")).build();
+            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("src/main/java/Backend/users.csv")).build();
             List<String[]> rawEmployees = employees.values().stream()
                     .map((EmployeeModel employee)->{
                         String[] rawEmployee = new String[5];
