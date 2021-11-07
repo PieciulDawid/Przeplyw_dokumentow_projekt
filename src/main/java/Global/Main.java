@@ -1,6 +1,7 @@
 package Global;
 
 import Backend.DBActivities;
+import Models.EmployeeModel;
 import Models.ProductModel;
 import Views.CRUDView;
 import Views.LoginView;
@@ -10,7 +11,7 @@ import java.io.IOException;
 public class Main {
 
     public  static void main(String[] args) throws IOException {
-        //  Test bazy danych dla products
+        //  Test bazy danych dla ProductModel
         /*
             DBActivities.getProducts().forEach((x, y) -> System.out.println(y));
             DBActivities.searchProducts("pap").forEach((x, y) -> System.out.println(y));
@@ -38,6 +39,16 @@ public class Main {
             DBActivities.logout();
             System.out.println(DBActivities.getLoggedUser());
         */
+        // Test bazy danych dla EmployeeModel
+        /*
+        EmployeeModel.getAll().forEach((x, y) -> System.out.println(y));
+        EmployeeModel.add(new EmployeeModel(0, "Piotr", "Koło", "kolo", "okrag"));
+        EmployeeModel.add(new EmployeeModel(0, "Piotr", "Okrąg", "okrag", "kolo"));
+        EmployeeModel.searchEmployee("piot").forEach((x, y) -> System.out.println(y));
+        EmployeeModel.delete(3);
+        EmployeeModel.searchEmployee("piot").forEach((x, y) -> System.out.println(y));
+        EmployeeModel.saveChanges();
+       */
         
         /*DBActivities.addProduct(new ProductModel(12, "perwol", (float)12.89,4));
         DBActivities.getProducts().stream().forEachOrdered(System.out::println);
