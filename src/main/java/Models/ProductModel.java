@@ -58,7 +58,7 @@ public class ProductModel implements Model {
     }
     
     public Object[] toTableRow() {
-        return new Object[] { Id, Name, Price, Amount };
+        return new Object[] { (Integer)Id, Name, (Float)Price, (Integer)Amount };
     }
 
     private static TreeMap<Integer,ProductModel> productModels = null;
@@ -112,19 +112,23 @@ public class ProductModel implements Model {
         TreeMap<Integer,ProductModel> products = getAll();
         product.setId(products.lastKey()+1);
         products.put(product.getId(), product);
+        saveChanges();
     }
 
     public static void modify(ProductModel product) {
         getAll().replace(product.getId(), product);
+        saveChanges();
     }
 
 
     public static void delete(ProductModel product) {
         getAll().remove(product.getId());
+        saveChanges();
     }
 
     public static void delete(int id) {
         getAll().remove(id);
+        saveChanges();
     }
 
     public static void saveChanges() {
@@ -148,5 +152,8 @@ public class ProductModel implements Model {
         catch(IOException e) {
             e.printStackTrace();
         }
+    }
+    public static ProductModel getLast(){
+        return  getAll().get(getAll().lastKey());
     }
 }

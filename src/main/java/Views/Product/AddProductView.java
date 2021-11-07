@@ -1,13 +1,17 @@
 package Views.Product;
 
+import Controllers.Product.AddProductController;
+import Models.ProductModel;
 import Views.View;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
+import com.googlecode.lanterna.gui2.table.Table;
+
 
 import java.util.Arrays;
 
 public class AddProductView extends View {
-    public AddProductView() {
+    public AddProductView(Table<Object> table) {
         super("Dodaj nowy produkt");
 
         TextBox Name = new TextBox("", TextBox.Style.SINGLE_LINE).setPreferredSize(new TerminalSize(30,1));
@@ -30,7 +34,12 @@ public class AddProductView extends View {
             Controller.CancelAction();
         }));
 
-        panel.addComponent(new Button("Dodaj"));
+        panel.addComponent(new Button("Dodaj",()->{
+
+            ((AddProductController)Controller).AddProduct(table, Name.getText(), Price.getText(), Amount.getText());
+            /*table.getTableModel().*/
+            Controller.CancelAction();
+        }));
 
         setHints(Arrays.asList(Window.Hint.CENTERED));
         setComponent(panel);

@@ -1,12 +1,15 @@
 package Views.Product;
 
+import Controllers.AboutController;
 import Controllers.Product.ProductController;
+import Models.ProductModel;
 import Views.View;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 import com.googlecode.lanterna.gui2.table.Table;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 
 public class ProductView extends View {
@@ -20,7 +23,7 @@ public class ProductView extends View {
 
         Panel searchAndTablePanel = new Panel();
         searchAndTablePanel.setLayoutManager(new LinearLayout(Direction.VERTICAL));
-        searchAndTablePanel.setPreferredSize(new TerminalSize(50,25));
+        //searchAndTablePanel.setPreferredSize(new TerminalSize(50,25));
         basePanel.addComponent(searchAndTablePanel);
 
         Panel searchPanel = new Panel();
@@ -36,38 +39,33 @@ public class ProductView extends View {
         searchPanel.addComponent(searchTextBox);
         searchPanel.addComponent(searchButton);
 
-        Table<Object> table = new Table<Object>("Imie", "Nazwisko");
+        Table<Object> table = new Table<Object>("ID", "Nazwa", "Cena", "Ilość");
         table.setSelectAction(() ->{
+            // TODO popranie wiersza z tabeli do pola widoku
             actionList.setEnabled(true);
             setFocusedInteractable(actionList);
             searchTextBox.setEnabled(false);
             searchButton.setEnabled(false);
-            // TODO tworzenie i przekazanie modelu
+
         });
 
         actionList
-                .addItem("Akcja1", () -> {
+                .addItem("Dodaj", () -> {
+                    table.setEnabled(true);
+                    searchTextBox.setEnabled(true);
+                    searchButton.setEnabled(true);
+                    setFocusedInteractable(table);
+                    actionList.setEnabled(false);
+                    ((ProductController)Controller).AddProduct(table);
+                })
+                .addItem("Modyfikuj", () -> {
                     table.setEnabled(true);
                     searchTextBox.setEnabled(true);
                     searchButton.setEnabled(true);
                     setFocusedInteractable(table);
                     actionList.setEnabled(false);
                 })
-                .addItem("Akcja2", () -> {
-                    table.setEnabled(true);
-                    searchTextBox.setEnabled(true);
-                    searchButton.setEnabled(true);
-                    setFocusedInteractable(table);
-                    actionList.setEnabled(false);
-                })
-                .addItem("Akcja3", () -> {
-                    table.setEnabled(true);
-                    searchTextBox.setEnabled(true);
-                    searchButton.setEnabled(true);
-                    setFocusedInteractable(table);
-                    actionList.setEnabled(false);
-                })
-                .addItem("Akcja4", () -> {
+                .addItem("Usuń", () -> {
                     table.setEnabled(true);
                     searchTextBox.setEnabled(true);
                     searchButton.setEnabled(true);
@@ -77,10 +75,10 @@ public class ProductView extends View {
                 .setPreferredSize(new TerminalSize(10,25))
                 .setEnabled(false);
 
-
-        table.getTableModel()
-                .addRow("Adrian", "Nowak")
-                .addRow("Jan", "Kowalski");
+        ProductModel.getAll().values()
+                .stream()
+                .map(ProductModel::toTableRow)
+                .forEachOrdered(table.getTableModel()::addRow);
 
         searchAndTablePanel.addComponent(table
                 .setPreferredSize(new TerminalSize(50, 20))

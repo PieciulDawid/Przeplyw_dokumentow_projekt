@@ -57,7 +57,7 @@ public class UIManager {
 					break;
 				}
 				try {
-					TimeUnit.MILLISECONDS.sleep(10);
+					TimeUnit.MILLISECONDS.sleep(30);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
