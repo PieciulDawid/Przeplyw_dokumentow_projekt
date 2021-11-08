@@ -139,7 +139,7 @@ public class EmployeeModel implements Model {
         return employeeModels;
     }
 
-    public static TreeMap<Integer,EmployeeModel> searchEmployee(String keyword) {
+    public static TreeMap<Integer,EmployeeModel> search(String keyword) {
         String keywordLowerCase = keyword.toLowerCase(Locale.ROOT);
         TreeMap<Integer,EmployeeModel> result = getAll().values().stream()
                 .filter((EmployeeModel item)->{
@@ -162,19 +162,23 @@ public class EmployeeModel implements Model {
         TreeMap<Integer,EmployeeModel> employees = getAll();
         employee.setId(employees.lastKey()+1);
         employees.put(employee.getId(), employee);
+        saveChanges();
     }
 
     public static void modify(EmployeeModel employee) {
         getAll().replace(employee.getId(), employee);
+        saveChanges();
     }
 
 
     public static void delete(EmployeeModel employee) {
         getAll().remove(employee.getId());
+        saveChanges();
     }
 
     public static void delete(int id) {
         getAll().remove(id);
+        saveChanges();
     }
 
     public static void saveChanges() {

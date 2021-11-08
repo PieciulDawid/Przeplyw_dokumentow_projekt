@@ -19,7 +19,7 @@ public class ProductController extends Controller {
         View DeleteProductView = new DeleteProductView(table, Id);
         UIManager.addWindow(DeleteProductView);
     }
-    public void ModiftProduct(Table<Object> table, AtomicInteger Id){
+    public void ModifyProduct(Table<Object> table, AtomicInteger Id){
         View ModifyProductView = new ModifyProductView(table, Id);
         UIManager.addWindow(ModifyProductView);
     }

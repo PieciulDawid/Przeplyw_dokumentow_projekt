@@ -65,7 +65,7 @@ public class ProductView extends View {
                     searchButton.setEnabled(true);
                     setFocusedInteractable(table);
                     actionList.setEnabled(false);
-                    ((ProductController)Controller).ModiftProduct(table, Id);
+                    ((ProductController)Controller).ModifyProduct(table, Id);
                 })
                 .addItem("Usuń", () -> {
                     table.setEnabled(true);

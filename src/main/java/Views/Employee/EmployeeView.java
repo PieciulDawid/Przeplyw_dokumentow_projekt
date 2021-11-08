@@ -1,45 +1,102 @@
 package Views.Employee;
 
 import Controllers.Employee.EmployeeController;
+import Controllers.Product.ProductController;
+import Models.EmployeeModel;
+import Models.ProductModel;
 import Views.View;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
+import com.googlecode.lanterna.gui2.table.Table;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class EmployeeView  extends View {
     public EmployeeView() {
         super("Zarządzanie pracownikami");
-        Panel panel = new Panel();
-        panel.setLayoutManager(new GridLayout(2));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,1)));
 
-        panel.addComponent(new Button("Dodaj",()->{
-            ((EmployeeController)Controller).AddEmployee();
-        }).setPreferredSize(new TerminalSize(7,1)));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+        Panel basePanel = new Panel();
+        basePanel.setLayoutManager(new GridLayout(2));
 
-        panel.addComponent(new Button("Wyświetl"));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+        ActionListBox actionList = new ActionListBox();
+        basePanel.addComponent(actionList);
 
-        panel.addComponent(new Button("Modyfikuj"));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
 
-        panel.addComponent(new Button("Usuń "));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+        Panel searchAndTablePanel = new Panel();
+        searchAndTablePanel.setLayoutManager(new LinearLayout(Direction.VERTICAL));
+        searchAndTablePanel.setPreferredSize(new TerminalSize(50,25));
+        basePanel.addComponent(searchAndTablePanel);
 
-        panel.addComponent(new Button("Dodaj wiele"));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
+        Panel searchPanel = new Panel();
+        searchPanel.setLayoutManager(new LinearLayout(Direction.HORIZONTAL));
+        searchAndTablePanel.addComponent(searchPanel
+                .withBorder(Borders.singleLine("Wyszukiwanie"))
+                .setPreferredSize(new TerminalSize(50, 3))
+        );
 
-        panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
-        panel.addComponent(new Button("Cofnij",()->{
+        TextBox searchTextBox = new TextBox().setPreferredSize(new TerminalSize(40,1));
+        Button searchButton = new Button("Szukaj", () -> {return;});
+
+        searchPanel.addComponent(searchTextBox);
+        searchPanel.addComponent(searchButton);
+
+        AtomicInteger Id = new AtomicInteger();
+
+        Table<Object> table = new Table<Object>("ID", "Imię", "Nazwisko");
+        table.setSelectAction(() ->{
+            Id.set(table.getSelectedRow());
+            actionList.setEnabled(true);
+            setFocusedInteractable(actionList);
+            searchTextBox.setEnabled(false);
+            searchButton.setEnabled(false);
+
+        });
+
+        actionList
+                .addItem("Dodaj", () -> {
+                    table.setEnabled(true);
+                    searchTextBox.setEnabled(true);
+                    searchButton.setEnabled(true);
+                    setFocusedInteractable(table);
+                    actionList.setEnabled(false);
+                    ((EmployeeController)Controller).AddEmployee(table);
+                })
+                .addItem("Modyfikuj", () -> {
+                    table.setEnabled(true);
+                    searchTextBox.setEnabled(true);
+                    searchButton.setEnabled(true);
+                    setFocusedInteractable(table);
+                    actionList.setEnabled(false);
+                    ((EmployeeController)Controller).ModifyEmployee(table, Id);
+                })
+                .addItem("Usuń", () -> {
+                    table.setEnabled(true);
+                    searchTextBox.setEnabled(true);
+                    searchButton.setEnabled(true);
+                    setFocusedInteractable(table);
+                    actionList.setEnabled(false);
+                    System.out.println(Id);
+                    ((EmployeeController)Controller).DeleteEmployee(table, Id);
+                })
+                .setPreferredSize(new TerminalSize(10,25))
+                .setEnabled(false);
+
+        EmployeeModel.getAll().values()
+                .stream()
+                .map(EmployeeModel::toTableRow)
+                .forEachOrdered(table.getTableModel()::addRow);
+
+        searchAndTablePanel.addComponent(table
+                .setPreferredSize(new TerminalSize(50, 20))
+                .withBorder(Borders.singleLine("Elementy"))
+        );
+
+        basePanel.addComponent(new Button("Cofnij",()->{
             Controller.GoBack();
         }));
-        panel.addComponent(new EmptySpace(new TerminalSize(0,0)));
-
 
         setHints(Arrays.asList(Window.Hint.CENTERED));
-        setComponent(panel);
+        setComponent(basePanel);
     }
 }
