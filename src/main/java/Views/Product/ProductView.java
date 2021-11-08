@@ -39,7 +39,7 @@ public class ProductView extends View {
 
         AtomicInteger Id = new AtomicInteger();
 
-        Table<Object> table = new Table<Object>();
+        Table<Object> table = new Table<Object>("");
         Button searchButton = new Button("Szukaj", () -> {((ProductController)Controller).SearchProduct(table, searchTextBox.getText());});
         searchPanel.addComponent(searchButton);
         table.setSelectAction(() ->{

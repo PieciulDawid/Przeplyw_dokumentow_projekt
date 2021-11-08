@@ -39,7 +39,7 @@ public class ClientView extends View {
 
         AtomicInteger Id = new AtomicInteger();
 
-        Table<Object> table = new Table<Object>();
+        Table<Object> table = new Table<Object>("");
         Button searchButton = new Button("Szukaj", () -> {((ClientController)Controller).SearchClient(table, searchTextBox.getText());});
         searchPanel.addComponent(searchButton);
         table.setSelectAction(() ->{
