@@ -34,14 +34,14 @@ public class ClientView extends View {
         );
 
         TextBox searchTextBox = new TextBox().setPreferredSize(new TerminalSize(40,1));
-        Button searchButton = new Button("Szukaj", () -> {return;});
 
         searchPanel.addComponent(searchTextBox);
-        searchPanel.addComponent(searchButton);
 
         AtomicInteger Id = new AtomicInteger();
 
-        Table<Object> table = new Table<Object>("ID", "Email", "Adres", "Telefon");
+        Table<Object> table = new Table<Object>();
+        Button searchButton = new Button("Szukaj", () -> {((ClientController)Controller).SearchClient(table, searchTextBox.getText());});
+        searchPanel.addComponent(searchButton);
         table.setSelectAction(() ->{
             Id.set(table.getSelectedRow());
             actionList.setEnabled(true);
@@ -78,11 +78,8 @@ public class ClientView extends View {
                 })
                 .setPreferredSize(new TerminalSize(10,25))
                 .setEnabled(false);
-
-        ClientModel.getAll().values()
-                .stream()
-                .map(ClientModel::toTableRow)
-                .forEachOrdered(table.getTableModel()::addRow);
+    
+        ((ClientController)Controller).SearchClient(table, "");
 
         searchAndTablePanel.addComponent(table
                 .setPreferredSize(new TerminalSize(50, 20))
