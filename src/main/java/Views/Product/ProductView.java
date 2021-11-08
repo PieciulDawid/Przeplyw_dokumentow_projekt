@@ -33,14 +33,15 @@ public class ProductView extends View {
         );
 
         TextBox searchTextBox = new TextBox().setPreferredSize(new TerminalSize(40,1));
-        Button searchButton = new Button("Szukaj", () -> {return;});
 
         searchPanel.addComponent(searchTextBox);
-        searchPanel.addComponent(searchButton);
+        
 
         AtomicInteger Id = new AtomicInteger();
 
-        Table<Object> table = new Table<Object>("ID", "Nazwa", "Cena", "Ilość");
+        Table<Object> table = new Table<Object>();
+        Button searchButton = new Button("Szukaj", () -> {((ProductController)Controller).SearchProduct(table, searchTextBox.getText());});
+        searchPanel.addComponent(searchButton);
         table.setSelectAction(() ->{
             Id.set(table.getSelectedRow());
             actionList.setEnabled(true);
@@ -78,11 +79,9 @@ public class ProductView extends View {
                 })
                 .setPreferredSize(new TerminalSize(10,25))
                 .setEnabled(false);
+    
+        ((ProductController)Controller).SearchProduct(table, "");
 
-        ProductModel.getAll().values()
-                .stream()
-                .map(ProductModel::toTableRow)
-                .forEachOrdered(table.getTableModel()::addRow);
 
         searchAndTablePanel.addComponent(table
                 .setPreferredSize(new TerminalSize(50, 20))
