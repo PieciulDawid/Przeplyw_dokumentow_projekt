@@ -69,7 +69,7 @@ public class ProductModel implements Model {
         }
 
         try {
-            List<String[]> productsRaw = new CSVReader(new FileReader("src/main/java/Backend/products.csv")).readAll();
+            List<String[]> productsRaw = new CSVReader(new FileReader("products.csv")).readAll();
             productModels = productsRaw.stream()
                     .map((String[] raw)->
                             new ProductModel(
@@ -134,7 +134,7 @@ public class ProductModel implements Model {
     public static void saveChanges() {
         TreeMap<Integer,ProductModel> products = getAll();
         try {
-            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("src/main/java/Backend/products.csv")).build();
+            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("products.csv")).build();
             List<String[]> rawProducts = products.values().stream()
                     .map((ProductModel product)->{
                         String[] rawProduct = new String[4];

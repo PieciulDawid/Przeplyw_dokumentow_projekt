@@ -78,7 +78,7 @@ public class EmployeeModel implements Model {
 
     public static EmployeeModel login(String login, String password) {
         try {
-            List<String[]> users = new CSVReader(new FileReader("src/main/java/Backend/users.csv"))
+            List<String[]> users = new CSVReader(new FileReader("users.csv"))
                     .readAll()
                     .stream()
                     .filter((String[] attr)->attr[3].equals(login) && attr[4].equals(password))
@@ -116,7 +116,7 @@ public class EmployeeModel implements Model {
         }
 
         try {
-            List<String[]> employeesRaw = new CSVReader(new FileReader("src/main/java/Backend/users.csv")).readAll();
+            List<String[]> employeesRaw = new CSVReader(new FileReader("users.csv")).readAll();
             employeeModels = employeesRaw.stream()
                     .map((String[] raw)->
                             new EmployeeModel(
@@ -184,7 +184,7 @@ public class EmployeeModel implements Model {
     public static void saveChanges() {
         TreeMap<Integer,EmployeeModel> employees = getAll();
         try {
-            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("src/main/java/Backend/users.csv")).build();
+            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("users.csv")).build();
             List<String[]> rawEmployees = employees.values().stream()
                     .map((EmployeeModel employee)->{
                         String[] rawEmployee = new String[5];

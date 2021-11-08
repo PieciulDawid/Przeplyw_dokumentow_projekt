@@ -1,14 +1,10 @@
 package Views;
 
 import Controllers.AboutController;
-import Controllers.FrogController;
-import Controllers.Product.ProductController;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
-import org.apache.commons.collections.functors.WhileClosure;
 
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class AboutView extends View {
     public AboutView() {

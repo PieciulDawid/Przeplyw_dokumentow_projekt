@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class OrdersView extends View {
     public OrdersView() {
-        super("Dodaj nowego pracownika");
+        super("Zamówienia");
 
         Panel panel = Panels.vertical();
 

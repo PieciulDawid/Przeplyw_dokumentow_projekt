@@ -80,7 +80,7 @@ public class ClientModel implements Model {
         }
 
         try {
-            List<String[]> clientsRaw = new CSVReader(new FileReader("src/main/java/Backend/clients.csv")).readAll();
+            List<String[]> clientsRaw = new CSVReader(new FileReader("clients.csv")).readAll();
             clientModel = clientsRaw.stream()
                     .map((String[] raw)->
                             new ClientModel(
@@ -156,7 +156,7 @@ public class ClientModel implements Model {
     public static void saveChanges() {
         TreeMap<Integer,ClientModel> clients = getAll();
         try {
-            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("src/main/java/Backend/clients.csv")).build();
+            ICSVWriter writer = new CSVWriterBuilder(new FileWriter("clients.csv")).build();
             List<String[]> rawClients = clients.values().stream()
                     .map((ClientModel client)->{
                         String[] rawClient = new String[4];

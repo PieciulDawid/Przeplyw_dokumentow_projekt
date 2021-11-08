@@ -74,7 +74,6 @@ public class ProductView extends View {
                     searchButton.setEnabled(true);
                     setFocusedInteractable(table);
                     actionList.setEnabled(false);
-                    System.out.println(Id);
                     ((ProductController)Controller).DeleteProduct(table, Id);
                 })
                 .setPreferredSize(new TerminalSize(10,25))

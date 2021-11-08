@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ModifyProductView extends View {
 
     public ModifyProductView(Table<Object> table, AtomicInteger Id) {
-        super("Dodaj nowy produkt");
+        super("Modyfikuj produkt");
 
         String name     = String.valueOf(table.getTableModel().getCell(1,Id.intValue()));
         String price    = String.valueOf(table.getTableModel().getCell(2,Id.intValue()));

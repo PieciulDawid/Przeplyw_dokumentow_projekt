@@ -77,7 +77,6 @@ public class EmployeeView  extends View {
                     searchButton.setEnabled(true);
                     setFocusedInteractable(table);
                     actionList.setEnabled(false);
-                    System.out.println(Id);
                     ((EmployeeController)Controller).DeleteEmployee(table, Id);
                 })
                 .setPreferredSize(new TerminalSize(10,25))

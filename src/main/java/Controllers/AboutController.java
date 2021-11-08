@@ -2,11 +2,13 @@ package Controllers;
 
 import Global.UIManager;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.gui2.*;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -61,6 +63,7 @@ public class AboutController extends Controller {
             frogList.add(label9);
         }
 
+        Random random = new Random();
         public List<Label> frogList = new LinkedList<Label>();
         public Label label1 = new Label(
                 "                              :?7OZOO8+\n" +
