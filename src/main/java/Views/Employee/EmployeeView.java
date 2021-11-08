@@ -1,5 +1,6 @@
 package Views.Employee;
 
+import Controllers.Client.ClientController;
 import Controllers.Employee.EmployeeController;
 import Controllers.Product.ProductController;
 import Models.EmployeeModel;
@@ -36,14 +37,14 @@ public class EmployeeView  extends View {
         );
 
         TextBox searchTextBox = new TextBox().setPreferredSize(new TerminalSize(40,1));
-        Button searchButton = new Button("Szukaj", () -> {return;});
 
         searchPanel.addComponent(searchTextBox);
-        searchPanel.addComponent(searchButton);
 
         AtomicInteger Id = new AtomicInteger();
 
-        Table<Object> table = new Table<Object>("ID", "Imię", "Nazwisko");
+        Table<Object> table = new Table<Object>("");
+        Button searchButton = new Button("Szukaj", () -> {((EmployeeController)Controller).SearchEmployee(table, searchTextBox.getText());});
+        searchPanel.addComponent(searchButton);
         table.setSelectAction(() ->{
             Id.set(table.getSelectedRow());
             actionList.setEnabled(true);
@@ -81,11 +82,8 @@ public class EmployeeView  extends View {
                 })
                 .setPreferredSize(new TerminalSize(10,25))
                 .setEnabled(false);
-
-        EmployeeModel.getAll().values()
-                .stream()
-                .map(EmployeeModel::toTableRow)
-                .forEachOrdered(table.getTableModel()::addRow);
+    
+        ((EmployeeController)Controller).SearchEmployee(table, "");
 
         searchAndTablePanel.addComponent(table
                 .setPreferredSize(new TerminalSize(50, 20))
